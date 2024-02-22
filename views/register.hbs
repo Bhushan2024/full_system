@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CaptchaCash</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+      <div class="front">
+        <img src="/css/welcome.avif" alt="">
+        <div class="text">
+          <span class="text-1">Every new friend is a <br> Value for You</span>
+          <span class="text-2">Let's get connected</span>
+        </div>
+      </div>
+    </div>
+    <div class="forms">
+      <div class="form-content">
+        <div class="signup-form">
+          <div class="title">Sign-In</div>
+          <form id="registrationForm" action="/auth/register" method="post">
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Enter your name" required name="name" autocomplete="off">
+              </div>
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="text" placeholder="Enter your email" required name="email">
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Enter your password" required name="passward">
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Enter password again" required name="passward2">
+              </div>
+              <input type="hidden" name="ref" value="{{referralCode}}">
+              <div class="button input-box">
+                <input type="submit" value="Submit">
+              </div>
+              <div class="text sign-up-text">
+                {{#if message}}
+                  <h4>{{message}}</h4>
+                {{/if}}
+                <p>Already have an account? <a href="/login">Click here</a></p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("registrationForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const referralCode = getReferralCodeFromURL();
+      document.getElementsByName("ref")[0].value = referralCode;
+      this.submit();
+    });
+
+    function getReferralCodeFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('ref');
+    }
+  </script>
+</body>
+
+</html>

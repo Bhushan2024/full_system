@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CaptchaCash - Withdraw</title>
+  <link rel="stylesheet" href="/css/styles2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <header class="header">
+    <div class="containerh">
+      <h1>CaptchaCash</h1>
+      <nav>
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/reff_profile">Refferal Account</a></li>
+          <li><a href="/plans">Plans</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="main-content">
+      <h2>Withdraw Request</h2>
+
+      <div class="w_form">
+        <form action="/auth/withdraw" method="post">
+        <div class="input-box">
+          <i class="fas fa-money-bill-wave"></i>
+          <input type="text" placeholder="Amount to Withdraw" required name="amount">
+        </div>
+        <div class="input-box">
+          <i class="fas fa-credit-card"></i>
+          <input type="text" placeholder="Account Number" required name="accountNumber">
+        </div>
+        <div class="input-box">
+          <i class="fas fa-code"></i>
+          <input type="text" placeholder="IFSC Code" required name="ifscCode">
+        </div>
+        {{#if message}}
+        <h4>{{message}}</h4>
+        {{/if}}
+        <div class="button input-boxx">
+          <input type="submit" value="Withdraw">
+        </div>
+      </form>
+      </div>
+      <br/><br/><br/>
+
+
+      <table class="table-width">
+        {{#if data}}
+        
+        
+        <h2>Your Withdraw Request List</h2>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Account Number</th>
+            <th>IFSC Code</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each data}}
+          <tr>
+            <td>{{this.date}}</td>
+            <td>{{this.amount}}</td>
+            <td>{{this.acc_no}}</td>
+            <td>{{this.ifsc}}</td>
+            <td>{{this.status}}</td>
+            
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      {{/if}}
+      <br />
+      <form action="/auth/withdraw" method="post">
+        <div class="button input-boxx">
+          <input type="submit" value="Show Your Withdraw Request">
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

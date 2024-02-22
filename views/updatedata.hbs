@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CaptchaCash - Withdraw</title>
+    <link rel="stylesheet" href="/css/styles4.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
+    <style>
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px; 
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="containerh">
+            <h1>CaptchaCash</h1>
+            <nav>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/adminpanel">Admin Panel</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="top">
+                <h1>Update Data</h1>
+            </div>
+            <div class="second">
+                <form id="profileForm" action="/auth/handledata" method="post">
+                    {{#each data}}
+                    <label for="username">Data:</label>
+                    <input type="text" id="username" name="username" value="{{this.date}}" readonly>
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" value="{{this.email}}" readonly>
+                    <input type="hidden" name="withdrawId" value="{{this.id}}">
+                    <label for="bio">Amount:</label>
+                    <input type="text" id="amount" name="amount" value="{{this.amount}}">
+                    <label for="bio">Account No:</label>
+                    <input type="text" id="acc_no" name="acc_no" value="{{this.acc_no}}">
+                    <label for="bio">IFSC Code:</label>
+                    <input type="text" id="ifsc" name="ifsc" value="{{this.ifsc}}">
+                    <div class="button input-boxx">
+                        <input type="submit" value="Update">
+                    </div>
+                    {{/each}}
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

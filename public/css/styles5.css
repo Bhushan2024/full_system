@@ -1,0 +1,187 @@
+.header {
+    background: #7d2ae8;
+    color: #fff;
+    width: 100%;
+}
+
+.containerh {
+    position: relative;
+    padding: 5px 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header h1 {
+    max-width: 25%;
+}
+
+nav ul {
+    padding-top: 20px;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #5b13b9;
+}
+
+body {
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #7d2ae8;
+}
+
+.container {
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    background: #fff;
+    padding: 40px 30px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    perspective: 2700px;
+    padding-bottom: 100px;
+    display: flex;
+    justify-content:center;
+    
+
+}
+
+.container .main-content {
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-around;
+   
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+
+
+.input-boxx input {
+    width: calc(100% - 30px);
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+
+.button input {
+    background: #5b13b9;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+    max-width: 200px;
+    width: 100px;
+
+
+}
+
+.button input:hover {
+    background: #4c0f9e;
+}
+
+
+
+.container {
+    padding-bottom: 300px;
+    padding-top: 50px;
+}
+
+.container h1 {
+    text-align: center;
+    color: #000000; 
+}
+
+#profileForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profileForm label {
+    font-weight: bold;
+    color: #000000; 
+}
+
+#profileForm input[type="text"] {
+    width: 200px;
+    
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #000000; 
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#profileForm button[type="submit"] {
+    background-color: #7d2ae8; 
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#profileForm button[type="submit"]:hover {
+    background-color: #5b13b9; 
+}
+
+.top{
+    padding-right: 100px;
+    padding-top: 130px;
+}
+.second{
+    max-width: 500px;
+}
+.button input {
+    background: #5b13b9;
+    color: #fff;
+    cursor: pointer;
+    max-width: 100%;
+}
+.w_form{
+    max-width: 350px;
+    margin-left: 430px;
+}
+.button input:hover {
+    background: #4c0f9e;
+}
+.input-boxx input {
+    width: calc(100% - 30px); 
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    max-width: 100px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px; 
+}  
+

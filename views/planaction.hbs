@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CaptchaCash - Withdraw</title>
+    <link rel="stylesheet" href="/css/styles8.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
+    <style>
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px; 
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="containerh">
+            <h1>Reff_System</h1>
+            <nav>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/adminpanel">Admin Panel</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="top">
+                <h1>Handle Plan</h1>
+            </div>
+            <div class="second">
+                <form id="profileForm" action="/auth/handleplan" method="post">
+                    {{#each data}}
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" value="{{this.email}}" readonly>
+                    <label for="plan">User Plan:</label>
+                    <input type="text" id="Plan" name="Plan" value="{{this.plan}}" readonly>
+                    <label for="plan">Remark:</label>
+                    <input type="text" id="remark" name="remark" >
+                    
+                    <div class="button input-boxx">
+                        <input type="submit" value="Remove">
+                    </div>
+                    {{/each}}
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

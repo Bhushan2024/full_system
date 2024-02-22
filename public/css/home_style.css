@@ -1,0 +1,165 @@
+.header {
+  background: #7d2ae8;
+  color: #fff;
+  width: 100%;
+}
+
+.containerh {
+  position:relative;
+  padding: 5px 30px;
+  display: flex;
+  justify-content:space-between;
+}
+
+.header h1 {
+  max-width: 25%;
+}
+
+nav ul {
+  padding-top: 20px;
+  list-style: none;
+  display: flex;
+  justify-content:flex-end;
+  margin-top: 10px;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #5b13b9;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #7d2ae8;
+  
+}
+
+
+.container {
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+  background: #fff;
+  padding: 40px 30px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  perspective: 2700px;
+  padding-bottom: 200px;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.container .main-content {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.containerr{
+  margin-top: 50px;
+}
+
+.captcha-box {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+}
+
+.captcha-code {
+  font-family: 'Courier New', Courier, monospace; /* Using a monospace font for a typewriter-like appearance */
+  font-size: 30px; /* Adjust font size as needed */
+  letter-spacing: 6px; /* Adding spacing between characters */
+  background-color: #f0f0f0; /* Light gray background */
+  border: 1px solid #ccc; /* Adding a border for distinction */
+  border-radius: 5px; /* Rounded corners for style */
+  width: fit-content; /* Adjusting width to fit the content */
+  margin: 0 auto; /* Centering the captcha */
+  text-align: center; /* Center-aligning text */
+  padding-left: 12px;
+  padding-right: 12px;
+  
+}
+
+
+.input-box {
+  margin-top: 10px;
+  padding: 10px;
+  width: 200px;
+}
+
+.buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  justify-content: space-evenly;
+}
+
+.submit-btn,
+.skip-btn {
+  background-color: #5b13b9;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+
+.counters {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.counter {
+  font-size: 16px;
+  color: #5b13b9;
+  display: flex;
+  align-items: center;
+}
+
+.counter span {
+  margin-left: 5px;
+}
+
+.counter i {
+  margin-right: 5px;
+}
+
+.fa-check-circle {
+  color: green;
+}
+
+.fa-times-circle {
+  color: red;
+}
+
+.fa-undo-alt {
+  color: orange;
+}
+
+.info{
+  margin-top: 5px;
+}
+.info p{
+  margin: 0px;
+}
+
+
+

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CaptchaCash - User Plans</title>
+    <link rel="stylesheet" href="/css/styles3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header class="header">
+        <div class="containerh">
+            <h1>CaptchaCash</h1>
+            <nav>
+                <ul>
+                    <li><a href="/adminpanel">Withdrawals</a></li>
+                    <li><a href="/adminplan">Wallet Control</a></li>
+                    <li><a href="/adminlogout">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <h1>Admin Panel - Wallet Control</h1>
+            <form action="/auth/adminwallet" method="post">
+                <div>
+                    <label for="status">Filter by User Plan:</label>
+                    <select id="status" name="plan">
+                        <option value="all">All</option>
+                        <option value="Basic Plan">Basic Plan</option>
+                        <option value="Standard Plan">Standard Plan</option>
+                        <option value="Premium Plan">Premium Plan</option>
+                    </select>
+                </div>
+                <br />
+                {{!-- <div>
+                    <label>Select Date:</label>
+                    <label for="status">From:</label>
+                    <input type="date" id="startDate" name="start_date">
+                    <label for="status"> To:</label>
+                    <input type="date" id="endDate" name="end_date">
+                </div> --}}
+                <div class="button input-boxx">
+                    <input type="submit" value="Show Users">
+                </div>
+            </form>
+            <br />
+            <table id="example" class="table-width">
+                {{#if data}}
+                <h2>CaptchaCash User List</h2>
+
+
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>User Email</th>
+                        <th>Wallet Amount</th>
+                        <th>Purchesed Plan</th>
+                        <th>Correct Captcha</th>
+                        <th>Wrong Captcha</th>
+                        <th>Skip Captcha</th>
+                        <th>Wallet Update </th>
+                        <th>Plan Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each data}}
+                    <tr>
+                        <td>{{this.name}}</td>
+                        <td>{{this.email}}</td>
+                        <td>{{this.reff_cash}}</td>
+                        <td>{{this.plan}}</td>
+                        <td>{{this.correct}}</td>
+                        <td>{{this.wrong}}</td>
+                        <td>{{this.skip}}</td>
+                        <td>
+                            <form action="/auth/walletupdate" method="post">
+                                <input type="hidden" name="amount" value="{{this.reff_cash}}">
+                                <input type="hidden" name="email" value="{{this.email}}">
+                                <input type="hidden" name="plan" value="{{this.plan}}">
+                                <input type="hidden" name="correct" value="{{this.correct}}">
+                                <button type="submit">Update</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/auth/planaction" method="post">
+                                {{!-- <input type="hidden" name="withdrawId" value="{{this.id}}">
+                                <input type="hidden" name="amount" value="{{this.amount}}">
+                                <input type="hidden" name="actual_amount" value="{{this.amount_avl}}"> --}}
+                                <input type="hidden" name="email" value="{{this.email}}">
+                                <button type="submit">Report</button>
+                            </form>
+                        </td>
+
+                        <td>
+
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <button id="prevPage">Previous</button>
+                <span id="currentPage">Page 1</span>
+                <button id="nextPage">Next</button>
+            </div>
+            {{/if}}
+            <br />
+            <br /><br /><br /><br /><br />
+
+        </div>
+    </div>
+
+    <script>
+        const tableRows = document.querySelectorAll('.table-width tbody tr');
+        const itemsPerPage = 5;
+        let currentPage = 1;
+
+        const updateTableDisplay = () => {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+
+            tableRows.forEach((row, index) => {
+                if (index >= startIndex && index < endIndex) {
+                    row.style.display = 'table-row';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            document.getElementById('currentPage').textContent = `Page ${currentPage}`;
+        };
+
+        document.getElementById('prevPage').addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                updateTableDisplay();
+            }
+        });
+
+        document.getElementById('nextPage').addEventListener('click', () => {
+            const maxPage = Math.ceil(tableRows.length / itemsPerPage);
+            if (currentPage < maxPage) {
+                currentPage++;
+                updateTableDisplay();
+            }
+        });
+
+        updateTableDisplay();
+    </script>
+
+    {{!--
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script> --}}
+</body>
+
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CaptchaCash - Plans</title>
+  <link rel="stylesheet" href="/css/styles6.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="containerh">
+      <h1>CaptchaCash</h1>
+      <nav>
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/reff_profile">Refferal Account</a></li>
+          <li><a href="/plans">Plans</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="title">
+      <h1>Plans</h1>
+    </div>
+    <div class="main-content">
+      <div class="plan">
+        <form class="pay-form">
+          <h3>Basic Plan</h3>
+          <p class="price">10 Rupees</p>
+          <ul class="benefits">
+            <li>Lifetime Validity</li>
+            <li>Unlimited Earning</li>
+            <li>20 Chaptchas = Rs. 5</li>
+            <li>Per Referral Rs. 5 </li>
+            <li>Customer Support</li>
+            <br />
+            <input id="checkbox" type="checkbox" required />
+            <input type="hidden" id="plan" name="plan" value="Basic Plan">
+            <label for="checkbox"> I agree to these <a href="tnc" target="_blank">Terms and Conditions</a>.</label>
+          </ul>
+
+
+          {{!-- <a href="/buy/basic" class="button">Buy Now</a> --}}
+          <div class="button input-boxx">
+            <input type="submit" value="Buy Now">
+          </div>
+        </form>
+      </div>
+      <div class="plan">
+        <form class="pay-form">
+          <h3>Standard Plan</h3>
+          <p class="price">20 Rupees</p>
+          <ul class="benefits">
+            <li>Lifetime Validity</li>
+            <li>Unlimited Earning</li>
+            <li>20 Chaptchas = Rs. 7</li>
+            <li>Per Referral Rs. 7</li>
+            <li>Customer Support</li>
+            <br />
+            <input id="checkbox" type="checkbox" required />
+            <input type="hidden" id="plan" name="plan" value="Standard Plan">
+            <label for="checkbox"> I agree to these <a href="#">Terms and Conditions</a>.</label>
+          </ul>
+          <div class="button input-boxx">
+            <input type="submit" value="Buy Now">
+          </div>
+        </form>
+      </div>
+      <div class="plan">
+        <form class="pay-form">
+          <h3>Premium Plan</h3>
+          <p class="price">30 Rupees</p>
+          <ul class="benefits">
+            <li>Lifetime Validity</li>
+            <li>Unlimited Earning</li>
+            <li>20 Chaptchas = Rs. 10</li>
+            <li>Per Referral Rs. 10</li>
+            <li>Customer Support</li>
+            <br />
+            <input id="checkbox" type="checkbox" required />
+            <input type="hidden" id="plan" name="plan" value="Premium Plan">
+            <label for="checkbox"> I agree to these <a href="#">Terms and Conditions</a>.</label>
+          </ul>
+          <div class="button input-boxx">
+            <input type="submit" value="Buy Now">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  $(document).ready(function () {
+    $('.pay-form').submit(function (e) {
+      e.preventDefault();
+
+      var formData = $(this).serialize();
+
+      $.ajax({
+        url: "/auth/createOrder",
+        type: "POST",
+        data: formData,
+        success: function (res) {
+          if (res.success) {
+            sendPaymentSuccess(res.order_id, res.product_name)
+            var options = {
+              "key": "" + res.key_id + "",
+              "amount": "" + res.amount + "",
+              "currency": "INR",
+              "name": "" + res.product_name + "",
+              "description": "" + res.description + "",
+              "image": "https://cdn.icon-icons.com/icons2/326/PNG/256/Letter_R_violet_34885.png",
+              "order_id": "" + res.order_id + "",
+              "handler": function (response) {
+                alert("Payment Succeeded");
+              },
+              "prefill": {
+                "contact": "" + res.contact + "",
+                "name": "" + res.name + "",
+                "email": "" + res.email + ""
+              },
+              "notes": {
+                "description": "" + res.description + ""
+              },
+              "theme": {
+                "color": "#5b13b9"
+              }
+            };
+            var razorpayObject = new Razorpay(options);
+            razorpayObject.on('payment.failed', function (response) {
+              alert("Payment Failed");
+            });
+            razorpayObject.open();
+          }
+          else {
+            alert(res.msg);
+          }
+        }
+      })
+
+    });
+  });
+
+
+  function sendPaymentSuccess(planId, planName) {
+    $.ajax({
+      url: "/auth/paymentsuccess",
+      type: "POST",
+      data: { planId: planId, planName: planName },
+      success: function (response) {
+        
+      },
+      error: function (xhr, status, error) {
+        alert("Error in success: " + error);
+      }
+    });
+  }
+
+</script>
+
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CaptchaCash - Home</title>
+  <link rel="stylesheet" href="/css/home_style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <header class="header">
+    <div class="containerh">
+      <h1>CaptchaCash</h1>
+      <nav>
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/reff_profile">Refferal Account</a></li>
+          <li><a href="/plans">Plans</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="main-content">
+      <h1>CaptchaCash: Crack the Code</h1>
+
+      <div class="containerr">
+        <div class="captcha-box">
+          <form action="/auth/verifyCaptcha" method="post">
+            <div class="captcha-code">
+              <p class="captcha-text">{{captcha}}</p>
+              <input type="hidden" id="captcha" name="captcha" value={{captcha}}>
+            </div>
+            <input type="text" class="input-box" name="ccode" placeholder="Enter code" autocomplete="off">
+            <div class="buttons">
+              <button type="submit" class="submit-btn">Submit</button>
+          </form>
+
+          <form action="/auth/skipCaptcha" , method="post">
+            <button type="submit" class="skip-btn">Skip</button>
+          </form>
+        </div>
+        <div class="counters">
+          <p class="counter"><i class="fas fa-check-circle"></i> <span>Correct:</span> <span
+              id="correctCount">{{correct}}</span>
+          </p>
+          <p class="counter"><i class="fas fa-times-circle"></i> <span>Wrong:</span> <span
+              id="wrongCount">{{wrong}}</span>
+          </p>
+          <p class="counter"><i class="fas fa-undo-alt"></i> <span>Skipped:</span> <span id="skipCount">{{skip}}</span>
+          </p>
+
+        </div>
+        <div class="info">
+          <p>All words are case sensitive</p>
+          <p>Lenght of chapchas will be 8 character</p>
+          <p>Chapchas may include numeric data</p>
+        </div>
+        {{#if message}}
+        <h4>{{message}}</h4>
+        {{/if}}
+      </div>
+    </div>
+
+  </div>
+  </div>
+</body>
+
+</html>

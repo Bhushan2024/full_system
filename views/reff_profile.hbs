@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CaptchaCash - Home</title>
+  <link rel="stylesheet" href="/css/reff_profile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <header class="header">
+    <div class="containerh">
+      <h1>CaptchaCash</h1>
+      <nav>
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/reff_profile">Refferal Account</a></li>
+          <li><a href="/plans">Plans</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="main-content">
+      <div class="cover">
+        <div class="front">
+          <h2>Referral Profile</h2>
+          <div class="text">
+            <section class="referral-section">
+              <div class="container">
+                <div class="referral-profile">
+                  <div class="referral-link-section">
+                    <img src="/css/welcome.avif" alt="Centered Image">
+                    <div class="imp_section">
+                      <p>Referral Link:</p>
+                      <input type="text" id="referralLink" value="{{referralLink}}" readonly>
+                      <button type="button" id="copyReferral">Copy</button>
+                    </div>
+                  </div>
+
+                  <p>Wallet Balance: {{reff_cash}} Rupees</p>
+                  <button type="button" id="Withdraw" onclick="redirectToPage()">Withdraw Money</button>
+
+                  <script>
+                    function redirectToPage() {
+                      window.location.href = "/withdraw";
+                    }
+                  </script>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const copyButton = document.getElementById('copyReferral');
+      const referralLinkInput = document.getElementById('referralLink');
+
+      copyButton.addEventListener('click', function () {
+        // Select the text in the input field
+        referralLinkInput.select();
+        referralLinkInput.setSelectionRange(0, 99999); 
+        document.execCommand('copy');
+        referralLinkInput.setSelectionRange(0, 0);
+        alert("Refferal Link Copied....");
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>
